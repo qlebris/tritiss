@@ -20,15 +20,4 @@ class WebSiteController extends AbstractController
         return $this->render('pages/home.html.twig');
     }
 
-
-
-
-    /**
-     * @Route("/concept", name="concept")
-     * @return Response
-     */
-    public function conceptPage(): Response
-    {
-        return $this->render('pages/concept.html.twig');
-    }
 }
