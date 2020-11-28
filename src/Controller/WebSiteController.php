@@ -11,11 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class WebSiteController extends AbstractController
 {
     /**
-     * @Route("/concept", name="concept")
+     * @Route("/", name="home")
      * @return Response
      */
-    public function conceptPage(): Response
+
+    public function homePage(): Response
     {
-        return $this->render('pages/concept.html.twig');
+        return $this->render('pages/home.html.twig');
     }
+
 }
