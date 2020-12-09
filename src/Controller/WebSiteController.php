@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,15 +22,17 @@ class WebSiteController extends AbstractController
     }
 
     /**
+     * @param Request $request
      * @param CategoryRepository $categoryRepository
      * @return Response
      */
-    public function navbar(CategoryRepository $categoryRepository): Response
+    public function navbar(Request $request, CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
 
-        return $this->render('header.html.twig', [
-            'categories' => $categories
+        return $this->render('_header.html.twig', [
+            'categories' => $categories,
+            'route' => $request->get('_route')
         ]);
     }
 

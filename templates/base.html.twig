@@ -8,7 +8,7 @@
     {% endblock %}
 </head>
 <header>
-    {{ render(controller('App\\Controller\\WebSiteController::navbar')) }}
+    {{ render(controller('App\\Controller\\WebSiteController::navbar', {'request': app.request})) }}
 </header>
 <body>
 {% block body %}{% endblock %}
