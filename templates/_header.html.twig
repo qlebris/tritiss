@@ -19,9 +19,10 @@
                 <a class="nav-link" href="#">Contactez-moi</a>
                 {% if route == 'contact' %}<span class="sr-only">(current)</span>{% endif %}
             </li>
-            <li class="nav-item {% if route == 'creations' %}active{% endif %}">
+            <li class="nav-item {% if route == 'creations' or route == 'category_details' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('creations') }}"> Mes Créations
-                    {% if route == 'creations' %}<span class="sr-only">(current)</span>{% endif %}
+                    {# TODO: add current category here <span> > cat </span>#}
+                    {% if route == 'creations' or route == 'category_details' %}<span class="sr-only">(current)</span>{% endif %}
                 </a>
             </li>
             {# TODO: dropdown to finish #}
