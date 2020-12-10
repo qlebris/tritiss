@@ -4,7 +4,6 @@
 namespace App\Controller;
 
 
-use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,6 +40,15 @@ class WebSiteController extends AbstractController
         );
     }
 
+    /**
+     *
+     * @Route("/admin", name="admin_access")
+     */
+    public function adminAccess(): Response
+    {
+
+        return $this->render('/admin/adminAccess.html.twig');
+    }
 
     /**
      * @param CategoryRepository $categoryRepository
