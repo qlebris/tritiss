@@ -32,10 +32,13 @@ class WebSiteController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
 
-        return $this->render('_header.html.twig', [
-            'categories' => $categories,
-            'route' => $request->get('_route')
-        ]);
+        return $this->render(
+            '_header.html.twig',
+            [
+                'categories' => $categories,
+                'route' => $request->get('_route'),
+            ]
+        );
     }
 
 
@@ -57,15 +60,26 @@ class WebSiteController extends AbstractController
     }
 
     /**
-     * @Route("/mes-creations/category/{category}", name="category_details")
-     * @param Category $category
+     * @Route("/mes-creations/category/{slug}", name="category_details")
+     * @param $slug
+     * @param CategoryRepository $categoryRepository
      * @param ArticleRepository $articleRepository
      * @return Response
      */
-    public function categoryDetailsPage(Category $category, ArticleRepository $articleRepository): Response
-    {
+    public function categoryDetailsPage(
+        $slug,
+        CategoryRepository $categoryRepository,
+        ArticleRepository $articleRepository
+    ): Response {
+        $category = $categoryRepository->findOneBySlug($slug);
+
 //        $articles = $articleRepository->findByCategory($category);
 
-    return$this->render('pages/categoryDetails.html.twig');
+        return $this->render(
+            'pages/categoryDetails.html.twig',
+            [
+                'category' => $category,
+            ]
+        );
     }
 }
