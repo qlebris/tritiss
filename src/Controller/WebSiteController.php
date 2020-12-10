@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Category;
+use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,10 +32,13 @@ class WebSiteController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
 
-        return $this->render('_header.html.twig', [
-            'categories' => $categories,
-            'route' => $request->get('_route')
-        ]);
+        return $this->render(
+            '_header.html.twig',
+            [
+                'categories' => $categories,
+                'route' => $request->get('_route'),
+            ]
+        );
     }
 
 
@@ -50,6 +55,30 @@ class WebSiteController extends AbstractController
             'pages/creations.html.twig',
             [
                 'categories' => $categories,
+            ]
+        );
+    }
+
+    /**
+     * @Route("/mes-creations/category/{slug}", name="category_details")
+     * @param $slug
+     * @param CategoryRepository $categoryRepository
+     * @param ArticleRepository $articleRepository
+     * @return Response
+     */
+    public function categoryDetailsPage(
+        $slug,
+        CategoryRepository $categoryRepository,
+        ArticleRepository $articleRepository
+    ): Response {
+        $category = $categoryRepository->findOneBySlug($slug);
+
+//        $articles = $articleRepository->findByCategory($category);
+
+        return $this->render(
+            'pages/categoryDetails.html.twig',
+            [
+                'category' => $category,
             ]
         );
     }
