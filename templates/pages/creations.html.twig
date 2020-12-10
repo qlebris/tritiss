@@ -3,6 +3,17 @@
 {% block title %} Mes créations {% endblock %}
 
 {% block body %}
-
-
+    <div class="container">
+        <div class="mt-4 align-items-center row">
+            {% for category in categories %}
+                <div class="col-lg-6 col-sm-12">
+                    <a href="{{ path('category_details', {'category': category.id}) }}">
+                        <img class="img-fluid category-img" src="/images/{{ category.imageName }}">
+                        <h4 class="text-colored text-center mt-1">{{ category.name|upper }}</h4>
+                    </a>
+                    <p class="text-center">{{ category.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
