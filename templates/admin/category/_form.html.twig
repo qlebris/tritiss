@@ -1,4 +1,10 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.slug) }}
+    {{ form_row(form.imageFile) }}
+        {% if form.vars.value.imageName %}
+            <img src="/images/{{ form.vars.value.imageName }}">
+        {% endif %}
+<button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
