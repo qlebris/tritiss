@@ -10,8 +10,10 @@
 <header>
     {{ render(controller('App\\Controller\\WebSiteController::navbar', {'request': app.request})) }}
 </header>
-<body>
-{% block body %}{% endblock %}
+<body {% if app.environment == 'dev' %} class="size" {% endif %}>
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}

@@ -1,19 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Categories{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
-
-    <table class="table">
+    <div class="row justify-content-center">
+        <a class="m-2 btn-round btn btn-primary" href="{{ path('category_new') }}">
+            <i class="fas fa-plus-circle"></i> <span class="d-lg-inline-block d-xs-none d-sm-none d-md-none">Ajouter</span></a>
+    </div>
+    <table class="mt-2 table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Slug</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th class="{# d-none #}">Slug</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for category in categories %}
@@ -21,19 +24,19 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.description }}</td>
-                <td>{{ category.slug }}</td>
-                <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                {# TODO: remove the slug once auto-generated #}
+                <td class="{# d-none #}">{{ category.slug }}</td>
+                <td><img class="category-mini" src="/images/{{ category.imageName }}"></td>
+                <td class="row justify-content-around">
+                    <a href="{{ path('category_show', {'id': category.id}) }}"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fas fa-pencil-alt"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas de catégorie trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('category_new') }}">Create new</a>
 {% endblock %}

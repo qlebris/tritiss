@@ -1,38 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}Categorie{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
-
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ category.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ category.description }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ category.slug }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td><img src="/images/{{ category.imageName }}"></td>
-            </tr>
+        <tr>
+            <th></th>
+            <td><img class="category-img" src="/images/{{ category.imageName }}"></td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ category.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ category.description }}</td>
+        </tr>
+        <tr>
+            <th>Slug</th>
+            <td>{{ category.slug }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('category_index') }}">back to list</a>
-
-    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
-
-    {{ include('admin/category/_delete_form.html.twig') }}
+    <div class="row justify-content-between">
+        <a class="btn btn-round btn-outline-dark" href="{{ path('category_index') }}">retour à la liste</a>
+        <a class="btn btn-round btn-primary" href="{{ path('category_edit', {'id': category.id}) }}">
+            <i class="fas fa-pencil-alt"></i> Editer</a>
+        {{ include('admin/category/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
