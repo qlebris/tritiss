@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Accès administrateur {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="mt-4 align-items-center row">
+            <div class="col-lg-6 col-sm-12">
+                <ul>
+                    <li><a href="{{ path('category_index') }}">Gestion des catégories</a></li>
+                    <li><a href="{{ path('article_index') }}">Gestion des articles</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
