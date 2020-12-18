@@ -9,6 +9,7 @@ use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class WebSiteController extends AbstractController
@@ -43,11 +44,16 @@ class WebSiteController extends AbstractController
     /**
      *
      * @Route("/admin", name="admin_access")
+     * @param SessionInterface $session
+     * @return Response
      */
-    public function adminAccess(): Response
+    public function adminAccess(SessionInterface $session): Response
     {
 
-        return $this->render('/admin/adminAccess.html.twig');
+        if ($session->get('admin') === true) {
+            return $this->render('/admin/adminAccess.html.twig');
+        }
+        return $this->redirectToRoute('login');
     }
 
     /**
