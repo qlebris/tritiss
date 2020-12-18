@@ -10,7 +10,7 @@
 <header>
     {{ render(controller('App\\Controller\\WebSiteController::navbar', {'request': app.request})) }}
 </header>
-<body>
+<body {% if app.environment == 'dev' %} class="size" {% endif %}>
 <div class="container">
     {% block body %}{% endblock %}
 </div>
