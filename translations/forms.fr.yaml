@@ -1,7 +1,4 @@
-login: identifiant
-password: mot de passe
-edit: édition
-show: voir
-delete: supprimer
-save: sauvegarder
-back: retour
+login: Identifiant
+password: Mot de passe
+delete: Supprimer
+save: Sauvegarder

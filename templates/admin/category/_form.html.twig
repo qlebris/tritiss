@@ -1,10 +1,10 @@
 {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.slug) }}
-    {{ form_row(form.imageFile) }}
+    {{ form_widget(form, {'attr': {'class': 'center'}}) }}
         {% if form.vars.value.imageName %}
             <img src="/images/{{ form.vars.value.imageName }}">
         {% endif %}
-<button class="btn">{{ button_label|default('Save') }}</button>
+<div class="row justify-content-between">
+    <a class="btn btn-round btn-outline-dark" href="{{ path('category_index') }}">Retour à la liste</a>
+    <button class="btn btn-primary btn-round">{{ button_label|default('Sauvegarder') }}</button>
+</div>
 {{ form_end(form) }}

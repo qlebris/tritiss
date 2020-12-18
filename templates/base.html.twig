@@ -11,7 +11,9 @@
     {{ render(controller('App\\Controller\\WebSiteController::navbar', {'request': app.request})) }}
 </header>
 <body>
-{% block body %}{% endblock %}
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}

@@ -26,9 +26,8 @@ class LoginType extends AbstractType
                 'password',
                 PasswordType::class,
                 [
-                    'label' => 'mot de passe',
+                    'label' => 'password',
                     'required' => true,
-
                 ]
             );
     }
