@@ -1,4 +1,31 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="row">
+    {{ form_row(form.name, {'attr': {'class': 'center'}}) }}
+    {{ form_row(form.reference, {'attr': {'class': 'center'}}) }}
+    {{ form_row(form.price, {'attr': {'class': 'center'}}) }}
+    {{ form_row(form.sold, {'attr': {'class': 'center'}}) }}
+</div>
+    {{ form_row(form.description, {'attr': {'class': 'center'}}) }}
+    {{ form_row(form.categories) }}
+    {{ form_row(form.imageFile1, {'attr': {'class': 'center'}}) }}
+    {{ form_row(form.imageFile2, {'attr': {'class': 'center'}}) }}
+    {{ form_row(form.imageFile3, {'attr': {'class': 'center'}}) }}
+    {{ form_row(form.imageFile4, {'attr': {'class': 'center'}}) }}
+
+        {% if form.vars.value.imageName1 %}
+            <img src="/images/{{ form.vars.value.imageName1 }}">
+        {% endif %}
+        {% if form.vars.value.imageName2 %}
+            <img src="/images/{{ form.vars.value.imageName2 }}">
+        {% endif %}
+        {% if form.vars.value.imageName3 %}
+            <img src="/images/{{ form.vars.value.imageName3 }}">
+        {% endif %}
+        {% if form.vars.value.imageName4 %}
+            <img src="/images/{{ form.vars.value.imageName4 }}">
+        {% endif %}
+<div class="row justify-content-between">
+    <a class="btn btn-round btn-outline-dark" href="{{ path('article_index') }}">Retour à la liste</a>
+    <button class="btn btn-primary btn-round">{{ button_label|default('Sauvegarder') }}</button>
+</div>
 {{ form_end(form) }}
