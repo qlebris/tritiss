@@ -3,19 +3,23 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
-
-    <table class="table">
+    <div class="row justify-content-center">
+        <a class="m-2 btn-round btn btn-primary" href="{{ path('article_new') }}">
+            <i class="fas fa-plus-circle"></i> <span
+                    class="d-lg-inline-block d-xs-none d-sm-none d-md-none">Ajouter</span></a>
+    </div>
+    <table class="mt-2 table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Reference</th>
-                <th>Price</th>
-                <th>Sold</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Reference</th>
+            <th>Price</th>
+            <th>Sold</th>
+            <th>Images</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for article in articles %}
@@ -27,17 +31,29 @@
                 <td>{{ article.price }}</td>
                 <td>{{ article.sold ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    {% if article.imageName1 %}
+                    <img class="category-mini" src="/images/{{ article.imageName1 }}">
+                    {% endif %}
+                    {% if article.imageName2 %}
+                    <img class="category-mini" src="/images/{{ article.imageName2 }}">
+                    {% endif %}
+                    {% if article.imageName3 %}
+                    <img class="category-mini" src="/images/{{ article.imageName3 }}">
+                    {% endif %}
+                    {% if article.imageName4 %}
+                    <img class="category-mini" src="/images/{{ article.imageName4 }}">
+                    {% endif %}
+                </td>
+                <td class="row justify-content-around">
+                    <a href="{{ path('article_show', {'id': article.id}) }}"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}"><i class="fas fa-pencil-alt"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="15">Pas d'articles trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('article_new') }}">Create new</a>
 {% endblock %}
