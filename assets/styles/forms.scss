@@ -5,3 +5,7 @@
 .center {
   text-align: center;
 }
+
+.custom-file-label::after{
+  content: 'Parcourir' !important;
+}

@@ -12,6 +12,24 @@
   margin: auto;
 }
 
+.article-mini {
+  max-width: 60px;
+  margin: auto;
+}
+
+.article-img {
+  max-width: 360px;
+  margin: auto auto 10px;
+}
+
+.sold {
+  color: red !important;
+}
+
+.unsold {
+  color: green !important;
+}
+
 .text-colored {
   color: #B0413E;
 }
