@@ -19,12 +19,36 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('reference', TextType::class)
-            ->add('price', MoneyType::class)
+            ->add('name', TextType::class, [
+                'label' => 'Nom',
+                'label_attr' => [
+                    'class' => 'row justify-content-center'
+                ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'label_attr' => [
+                    'class' => 'row justify-content-center'
+                ]
+            ])
+            ->add('reference', TextType::class, [
+                'label' => 'Référence',
+                'label_attr' => [
+                    'class' => 'row justify-content-center'
+                ]
+            ])
+            ->add('price', MoneyType::class, [
+                'label' => 'Prix',
+                'label_attr' => [
+                    'class' => 'row justify-content-center'
+                ]
+            ])
             ->add('sold', CheckboxType::class, [
-                'required' => false
+                'label' => 'Vendu',
+                'required' => false,
+                'label_attr' => [
+                    'class' => 'switch-custom'
+                ]
             ])
             ->add(
                 'imageFile1',
