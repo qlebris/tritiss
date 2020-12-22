@@ -45,8 +45,7 @@
                             class="sr-only">(current)</span>{% endif %}
                 </a>
             </li>
-            {# TODO: apply condition before prod #}
-{#            {% if app.session.get('admin') %}#}
+            {% if app.session.get('admin') or app.environment == 'dev'  %}
                 <li class="nav-item {% if route in adminRoutes %}active{% endif %}">
                     <a class="nav-link" href="{{ path('admin_access') }}">Administration</a>
                     {% if route in adminRoutes %}<span class="sr-only">(current)</span>{% endif %}
@@ -54,7 +53,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('admin_logout') }}">Déconnexion</a>
                 </li>
-{#            {% endif %}#}
+            {% endif %}
             {# TODO: dropdown to finish #}
             {# <li class="nav-item dropdown {% if route == 'creations' %}active{% endif %}"> #}
             {# <a class="nav-link dropdown-toggler" href="{{ path('creations') }}" id="navbarDropdown" role="button" #}

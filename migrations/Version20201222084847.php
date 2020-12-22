@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20201218160335 extends AbstractMigration
+final class Version20201222084847 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -23,13 +23,11 @@ final class Version20201218160335 extends AbstractMigration
         $this->addSql('CREATE TABLE article_category (article_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_53A4EDAA7294869C (article_id), INDEX IDX_53A4EDAA12469DE2 (category_id), PRIMARY KEY(article_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE article_category ADD CONSTRAINT FK_53A4EDAA7294869C FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE article_category ADD CONSTRAINT FK_53A4EDAA12469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE article ADD image_name1 VARCHAR(255) NOT NULL, ADD image_size1 INT NOT NULL, ADD image_name2 VARCHAR(255) NOT NULL, ADD image_size2 INT NOT NULL, ADD image_name3 VARCHAR(255) NOT NULL, ADD image_size3 INT NOT NULL, ADD image_name4 VARCHAR(255) NOT NULL, ADD image_size4 INT NOT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('DROP TABLE article_category');
-        $this->addSql('ALTER TABLE article DROP image_name1, DROP image_size1, DROP image_name2, DROP image_size2, DROP image_name3, DROP image_size3, DROP image_name4, DROP image_size4');
     }
 }
