@@ -77,21 +77,19 @@ class WebSiteController extends AbstractController
      * @Route("/mes-creations/category/{slug}", name="category_details")
      * @param $slug
      * @param CategoryRepository $categoryRepository
-     * @param ArticleRepository $articleRepository
      * @return Response
      */
     public function categoryDetailsPage(
         $slug,
-        CategoryRepository $categoryRepository,
-        ArticleRepository $articleRepository
+        CategoryRepository $categoryRepository
     ): Response {
         $category = $categoryRepository->findOneBySlug($slug);
-        dump($category->getArticles());die();
-
+        $articles = $category->getArticles();
 
         return $this->render(
             'pages/categoryDetails.html.twig',
             [
+                'category' => $category,
                 'articles' => $articles,
             ]
         );
