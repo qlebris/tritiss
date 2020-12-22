@@ -1,0 +1,35 @@
+.category-img {
+  border-radius: 120px;
+  max-width: 358px;
+  display: block;
+  margin: auto;
+}
+
+.category-mini {
+  border-radius: 120px;
+  max-width: 70px;
+  display: block;
+  margin: auto;
+}
+
+.article-mini {
+  max-width: 60px;
+  margin: auto;
+}
+
+.article-img {
+  max-width: 360px;
+  margin: auto auto 10px;
+}
+
+.sold {
+  color: red !important;
+}
+
+.unsold {
+  color: green !important;
+}
+
+.text-colored {
+  color: #B0413E;
+}

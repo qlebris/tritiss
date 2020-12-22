@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer Article{% endblock %}
+
+{% block body %}
+    <div class="m-4 row justify-content-center">
+        {{ include('admin/article/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    </div>
+{% endblock %}

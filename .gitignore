@@ -9,6 +9,11 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+###> images downloaded ###
+/public/images/*
+!/public/images/.keep
+###< images downloaded ###
+
 ###> symfony/phpunit-bridge ###
 .phpunit
 .phpunit.result.cache

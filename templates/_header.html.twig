@@ -1,0 +1,72 @@
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{% set adminRoutes = [
+    'admin_access',
+    'category_index',
+    'article_index',
+    'category_new',
+    'article_new',
+    'category_show',
+    'article_show',
+    'category_edit',
+    'article_edit',
+] %}
+<div class="headerImg">
+    <img src="{{ asset('build/logo-tritiss-DL.png') }}">
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Tritiss'B</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if route == 'home' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('home') }}"> Concept
+                    {% if route == 'home' %}<span class="sr-only">(current)</span>{% endif %}
+                </a>
+            </li>
+            <li class="nav-item {% if route == 'contact' %}active{% endif %}">
+                <a class="nav-link" href="#">Contactez-moi</a>
+                {% if route == 'contact' %}<span class="sr-only">(current)</span>{% endif %}
+            </li>
+            <li class="nav-item {% if route == 'creations' or route == 'category_details' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('creations') }}"> Mes Créations
+                    {# TODO: add current category here <span> > cat </span> #}
+                    {% if route == 'creations' or route == 'category_details' %}<span
+                            class="sr-only">(current)</span>{% endif %}
+                </a>
+            </li>
+            {% if app.session.get('admin') or app.environment == 'dev'  %}
+                <li class="nav-item {% if route in adminRoutes %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('admin_access') }}">Administration</a>
+                    {% if route in adminRoutes %}<span class="sr-only">(current)</span>{% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_logout') }}">Déconnexion</a>
+                </li>
+            {% endif %}
+            {# TODO: dropdown to finish #}
+            {# <li class="nav-item dropdown {% if route == 'creations' %}active{% endif %}"> #}
+            {# <a class="nav-link dropdown-toggler" href="{{ path('creations') }}" id="navbarDropdown" role="button" #}
+            {# data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> #}
+            {# Mes Créations #}
+            {# {% if route == 'creations' %}<span class="sr-only">(current)</span>{% endif %} #}
+            {# </a> #}
+            {# <div class="dropdown-menu" aria-labelledby="navbarDropdown"> #}
+            {# {% for category in categories %} #}
+            {# <a class="dropdown-item" href="#">{{ category.name }}</a> #}
+            {# {% endfor %} #}
+            {# </div> #}
+            {# </li> #}
+        </ul>
+    </div>
+</nav>

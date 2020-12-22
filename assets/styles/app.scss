@@ -1,3 +1,9 @@
-body {
-    background-color: lightgray;
-}
+@import "myvars";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~bootstrap/scss/bootstrap";
+@import "header";
+@import "categories";
+@import "forms";
+//TODO: remove divDebug on prod
+@import "divDebug";
+

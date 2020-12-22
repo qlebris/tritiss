@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody>
+        <tr>
+            <th></th>
+            <td><img class="category-img" src="/images/{{ category.imageName }}"></td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ category.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ category.description }}</td>
+        </tr>
+        <tr>
+            <th>Slug</th>
+            <td>{{ category.slug }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row justify-content-between">
+        <a class="btn btn-round btn-outline-dark" href="{{ path('category_index') }}">retour à la liste</a>
+        <a class="btn btn-round btn-primary" href="{{ path('category_edit', {'id': category.id}) }}">
+            <i class="fas fa-pencil-alt"></i> Editer</a>
+        {{ include('admin/category/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
