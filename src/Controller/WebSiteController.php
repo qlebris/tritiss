@@ -86,13 +86,13 @@ class WebSiteController extends AbstractController
         ArticleRepository $articleRepository
     ): Response {
         $category = $categoryRepository->findOneBySlug($slug);
+        dump($category->getArticles());die();
 
-//        $articles = $articleRepository->findByCategory($category);
 
         return $this->render(
             'pages/categoryDetails.html.twig',
             [
-                'category' => $category,
+                'articles' => $articles,
             ]
         );
     }

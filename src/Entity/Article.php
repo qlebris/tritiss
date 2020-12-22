@@ -72,13 +72,13 @@ class Article
     private $imageFile2;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string|null
      */
     private $imageName2;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var int|null
      */
     private $imageSize2;
@@ -90,13 +90,13 @@ class Article
     private $imageFile3;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string|null
      */
     private $imageName3;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var int|null
      */
     private $imageSize3;
@@ -108,13 +108,13 @@ class Article
     private $imageFile4;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string|null
      */
     private $imageName4;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var int|null
      */
     private $imageSize4;
@@ -124,9 +124,6 @@ class Article
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
      */
     private $categories;
-
-
-
 
     public function __construct()
     {
@@ -438,6 +435,7 @@ class Article
     {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
+            $category->addArticle($this);
         }
 
         return $this;
@@ -445,9 +443,10 @@ class Article
 
     public function removeCategory(Category $category): self
     {
-        $this->categories->removeElement($category);
+        if ($this->categories->removeElement($category)) {
+            $category->removeArticle($this);
+        }
 
         return $this;
     }
-
 }
