@@ -55,6 +55,7 @@ class ArticleType extends AbstractType
                 FileType::class,
                 [
                     'label' => 'Image 1',
+                    'label_attr' => ['class' => 'uploadLabel'],
                     'required' => empty($builder->getData()->getImageName1()),
                 ]
             )
@@ -63,6 +64,7 @@ class ArticleType extends AbstractType
                 FileType::class,
                 [
                     'label' => 'Image 2',
+                    'label_attr' => ['class' => 'uploadLabel'],
 //                    'required' => empty($builder->getData()->getImageName2()),
                 'required' => false
                 ]
@@ -72,6 +74,7 @@ class ArticleType extends AbstractType
                 FileType::class,
                 [
                     'label' => 'Image 3',
+                    'label_attr' => ['class' => 'uploadLabel'],
 //                    'required' => empty($builder->getData()->getImageName3()),
                     'required' => false
                 ]
@@ -81,6 +84,7 @@ class ArticleType extends AbstractType
                 FileType::class,
                 [
                     'label' => 'Image 4',
+                    'label_attr' => ['class' => 'uploadLabel'],
 //                    'required' => empty($builder->getData()->getImageName4()),
                     'required' => false
                 ]

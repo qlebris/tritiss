@@ -36,6 +36,7 @@ class CategoryType extends AbstractType
                 FileType::class,
                 [
                     'label' => 'Image',
+                    'label_attr' => ['class' => 'uploadLabel'],
                     'required' => empty($builder->getData()->getImageName()),
                 ]
             );
