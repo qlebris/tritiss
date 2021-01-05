@@ -8,7 +8,7 @@ $(document).ready(function() {
         // Mouseover
         dropdown.hover(function(){
             var notMobileMenu = $(navbarToggle).size() > 0 && $(navbarToggle).css('display') === 'none';
-            if ((dropdownHoverAll == true || (dropdownHoverAll == false && notMobileMenu))) {
+            if ((dropdownHoverAll === true || (dropdownHoverAll === false && notMobileMenu))) {
                 dropdownToggle.trigger('click');
             }
         })
