@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="nav-item {% if route == 'contact' %}active{% endif %}">
-                <a class="nav-link" href="#">Contactez-moi</a>
+                <a class="nav-link" href="{{ path('contact') }}">Contactez-moi</a>
                 {% if route == 'contact' %}<span class="sr-only">(current)</span>{% endif %}
             </li>
             <li class="nav-item {% if route == 'creations' or route == 'category_details' %}active{% endif %}">
@@ -45,7 +45,7 @@
                             class="sr-only">(current)</span>{% endif %}
                 </a>
             </li>
-            {% if app.session.get('admin') or app.environment == 'dev'  %}
+            {% if app.session.get('admin') or app.environment == 'dev' %}
                 <li class="nav-item {% if route in adminRoutes %}active{% endif %}">
                     <a class="nav-link" href="{{ path('admin_access') }}">Administration</a>
                     {% if route in adminRoutes %}<span class="sr-only">(current)</span>{% endif %}
