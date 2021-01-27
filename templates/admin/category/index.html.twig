@@ -5,7 +5,8 @@
 {% block body %}
     <div class="row justify-content-center">
         <a class="m-2 btn-round btn btn-primary" href="{{ path('category_new') }}">
-            <i class="fas fa-plus-circle"></i> <span class="d-lg-inline-block d-xs-none d-sm-none d-md-none">Ajouter</span></a>
+            <i class="fas fa-plus-circle"></i> <span
+                    class="d-lg-inline-block d-xs-none d-sm-none d-md-none">Ajouter</span></a>
     </div>
     <table class="mt-2 table">
         <thead>
@@ -20,13 +21,15 @@
         <tbody>
         {% for category in categories %}
             <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>{{ category.description }}</td>
-                <td><img class="category-mini" src="/images/{{ category.imageName }}"></td>
-                <td class="row justify-content-around">
-                    <a href="{{ path('category_show', {'id': category.id}) }}"><i class="far fa-eye"></i></a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+                <td class="vertCenter">{{ category.id }}</td>
+                <td class="vertCenter">{{ category.name }}</td>
+                <td class="vertCenter">{{ category.description }}</td>
+                <td class="vertCenter"><img class="category-mini" src="/images/{{ category.imageName }}"></td>
+                <td class="vertCenter">
+                    <div class="row justify-content-around">
+                        <a href="{{ path('category_show', {'id': category.id}) }}"><i class="far fa-eye"></i></a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+                    </div>
                 </td>
             </tr>
         {% else %}
