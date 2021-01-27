@@ -29,8 +29,6 @@ class CategoryType extends AbstractType
                     'label' => 'Description',
                 ]
             )
-//            TODO: remove slug once auto generated
-            ->add('slug')
             ->add(
                 'imageFile',
                 FileType::class,
