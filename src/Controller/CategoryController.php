@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Services\SlugFilter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,9 +31,10 @@ class CategoryController extends AbstractController
     /**
      * @Route("/new", name="category_new", methods={"GET","POST"})
      * @param Request $request
+     * @param SlugFilter $slugFilter
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, SlugFilter $slugFilter): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
@@ -40,6 +42,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $category->setSlug($slugFilter->slug($category->getName()));
             $entityManager->persist($category);
             $entityManager->flush();
 

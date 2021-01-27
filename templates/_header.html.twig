@@ -18,10 +18,12 @@
     'article_edit',
 ] %}
 <div class="headerImg">
-    <img src="{{ asset('build/logo-tritiss-DL.png') }}">
+    <a href="{{ path('home') }}">
+        <img src="{{ asset('build/logo-tritiss-DL.png') }}">
+    </a>
 </div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Tritiss'B</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <a class="navbar-brand" href="{{ path('home') }}">Tritiss'B</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,7 +37,7 @@
                 </a>
             </li>
             <li class="nav-item {% if route == 'contact' %}active{% endif %}">
-                <a class="nav-link" href="#">Contactez-moi</a>
+                <a class="nav-link" href="{{ path('contact') }}">Contactez-moi</a>
                 {% if route == 'contact' %}<span class="sr-only">(current)</span>{% endif %}
             </li>
             <li class="nav-item {% if route == 'creations' or route == 'category_details' %}active{% endif %}">
@@ -45,7 +47,7 @@
                             class="sr-only">(current)</span>{% endif %}
                 </a>
             </li>
-            {% if app.session.get('admin') or app.environment == 'dev'  %}
+            {% if app.session.get('admin') or app.environment == 'dev' %}
                 <li class="nav-item {% if route in adminRoutes %}active{% endif %}">
                     <a class="nav-link" href="{{ path('admin_access') }}">Administration</a>
                     {% if route in adminRoutes %}<span class="sr-only">(current)</span>{% endif %}

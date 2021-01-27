@@ -4,11 +4,15 @@
 namespace App\Controller;
 
 
+use App\Form\ContactType;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class WebSiteController extends AbstractController
@@ -41,6 +45,41 @@ class WebSiteController extends AbstractController
     }
 
     /**
+     * @Route("/contactez-moi", name="contact")
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * @return Response
+     * @throws TransportExceptionInterface
+     */
+    public function contactForm(Request $request, MailerInterface $mailer): Response
+    {
+        $form = $this->createForm(ContactType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mail = (new Email())
+                ->from($form->getData()['email'])
+                ->to($_ENV['MAILER_RECEIVER'])
+                ->subject("message sur tritiss'B de ".$form->getData()['name'])
+                ->text($form->getData()['message']);
+
+            $mailer->send($mail);
+            $this->addFlash(
+                'success',
+                "votre message a bien été envoyé, nous nous efforçons d'y répondre dans les meilleurs délais"
+            );
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render(
+            '/pages/contact.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
      *
      * @Route("/admin", name="admin_access")
      * @param SessionInterface $session
@@ -48,10 +87,10 @@ class WebSiteController extends AbstractController
      */
     public function adminAccess(SessionInterface $session): Response
     {
-
         if ($session->get('admin') === true) {
             return $this->render('/admin/adminAccess.html.twig');
         }
+
         return $this->redirectToRoute('login');
     }
 
