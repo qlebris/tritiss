@@ -1,0 +1,25 @@
+<footer class="container mb-5">
+    <hr>
+    <div class="row justify-content-around">
+        <div class="col-4 center">
+            <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
+        </div>
+        <div class="col-4 center">
+            <a class="navbar-brand" href="{{ path('contact') }}">Contactez-moi</a>
+        </div>
+        <div class="col-4 center">
+            <a class="navbar-brand" href="{{ path('creations') }}">Mes Créations</a>
+        </div>
+        {% if app.session.get('admin') or app.environment == 'dev' %}
+        <div class="col-4 center">
+            <a class="navbar-brand" href="{{ path('admin_access') }}">Administration</a>
+        </div>
+        {% endif %}
+    </div>
+
+
+
+
+
+
+</footer>
