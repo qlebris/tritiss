@@ -1,12 +1,8 @@
 @import "myvars";
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop');
-}
-
-html, body {
-    font-family: 'Poppins', sans-serif;
+body {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 115%;
 }
 
 .dropdown:hover>.dropdown-menu {
