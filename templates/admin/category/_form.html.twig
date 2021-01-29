@@ -1,4 +1,10 @@
 {{ form_start(form) }}
+    {{ form_widget(form.active, {
+        'attr': {
+            'class': 'center',
+            'disabled' : app.request.get('_route') != 'category_edit'
+        }
+    }) }}
     {{ form_widget(form, {'attr': {'class': 'center'}}) }}
         {% if form.vars.value.imageName %}
             <img class="category-img" src="/images/{{ form.vars.value.imageName }}">

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,6 +16,13 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('active', CheckboxType::class, [
+                'label' => 'visible',
+                'required' => false,
+                'label_attr' => [
+                    'class' => 'switch-custom'
+                ]
+            ])
             ->add(
                 'name',
                 TextType::class,
@@ -27,6 +35,9 @@ class CategoryType extends AbstractType
                 TextareaType::class,
                 [
                     'label' => 'Description',
+                    'attr' => [
+                        'rows' => 4
+                    ]
                 ]
             )
             ->add(

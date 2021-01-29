@@ -20,9 +20,9 @@
         </thead>
         <tbody>
         {% for category in categories %}
-            <tr>
+            <tr {% if category.active is same as false %}class="muted"{% endif %}>
                 <td class="vertCenter">{{ category.id }}</td>
-                <td class="vertCenter">{{ category.name }}</td>
+                <td class="vertCenter">{{ category.name }} {% if category.active is same as false %}(désactivée){% endif %}</td>
                 <td class="vertCenter">{{ category.description }}</td>
                 <td class="vertCenter"><img class="category-mini" src="/images/{{ category.imageName }}"></td>
                 <td class="vertCenter">
