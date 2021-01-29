@@ -96,11 +96,11 @@ class CategoryController extends AbstractController
      * @param Category $category
      * @return Response
      */
-    public function delete(Request $request, Category $category): Response
+    public function deactivate(Request $request, Category $category): Response
     {
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+            $category->setActive(false);
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($category);
             $entityManager->flush();
         }
 

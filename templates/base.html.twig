@@ -14,7 +14,7 @@
     {{ render(controller('App\\Controller\\WebSiteController::navbar', {'request': app.request})) }}
 </header>
 <body {% if app.environment == 'dev' %} class="size" {% endif %}>
-<div class="container">
+<div class="container min-vh">
     {% block body %}{% endblock %}
 </div>
 {% include '_footer.html.twig' %}

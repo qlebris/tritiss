@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,37 +20,57 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'Nom',
-                'label_attr' => [
-                    'class' => 'row justify-content-center'
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'label' => 'Nom',
+                    'label_attr' => [
+                        'class' => 'row justify-content-center',
+                    ],
                 ]
-            ])
-            ->add('description', TextareaType::class, [
-                'label' => 'Description',
-                'label_attr' => [
-                    'class' => 'row justify-content-center'
+            )
+            ->add(
+                'description',
+                TextareaType::class,
+                [
+                    'label' => 'Description',
+                    'label_attr' => [
+                        'class' => 'row justify-content-center',
+                    ],
                 ]
-            ])
-            ->add('reference', TextType::class, [
-                'label' => 'Référence',
-                'label_attr' => [
-                    'class' => 'row justify-content-center'
+            )
+            ->add(
+                'reference',
+                TextType::class,
+                [
+                    'label' => 'Référence',
+                    'label_attr' => [
+                        'class' => 'row justify-content-center',
+                    ],
                 ]
-            ])
-            ->add('price', MoneyType::class, [
-                'label' => 'Prix',
-                'label_attr' => [
-                    'class' => 'row justify-content-center'
+            )
+            ->add(
+                'price',
+                MoneyType::class,
+                [
+                    'label' => 'Prix',
+                    'label_attr' => [
+                        'class' => 'row justify-content-center',
+                    ],
                 ]
-            ])
-            ->add('sold', CheckboxType::class, [
-                'label' => 'Vendu',
-                'required' => false,
-                'label_attr' => [
-                    'class' => 'switch-custom'
+            )
+            ->add(
+                'sold',
+                CheckboxType::class,
+                [
+                    'label' => 'Vendu',
+                    'required' => false,
+                    'label_attr' => [
+                        'class' => 'switch-custom',
+                    ],
                 ]
-            ])
+            )
             ->add(
                 'imageFile1',
                 FileType::class,
@@ -65,8 +86,7 @@ class ArticleType extends AbstractType
                 [
                     'label' => 'Image 2',
                     'label_attr' => ['class' => 'uploadLabel'],
-//                    'required' => empty($builder->getData()->getImageName2()),
-                'required' => false
+                    'required' => false,
                 ]
             )
             ->add(
@@ -75,8 +95,7 @@ class ArticleType extends AbstractType
                 [
                     'label' => 'Image 3',
                     'label_attr' => ['class' => 'uploadLabel'],
-//                    'required' => empty($builder->getData()->getImageName3()),
-                    'required' => false
+                    'required' => false,
                 ]
             )
             ->add(
@@ -85,15 +104,19 @@ class ArticleType extends AbstractType
                 [
                     'label' => 'Image 4',
                     'label_attr' => ['class' => 'uploadLabel'],
-//                    'required' => empty($builder->getData()->getImageName4()),
-                    'required' => false
+                    'required' => false,
                 ]
             )
             ->add(
                 'categories',
                 EntityType::class,
                 [
+                    'label' => 'Catégories',
                     'class' => Category::class,
+                    'query_builder' => static function (CategoryRepository $cr) {
+                        return $cr->createQueryBuilder('c')
+                            ->where('c.active = true');
+                    },
                     'choice_label' => 'name',
                     'multiple' => true,
                     'expanded' => true,
