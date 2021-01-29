@@ -62,6 +62,11 @@ class Category
      */
     private $articles;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active = true;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -207,6 +212,18 @@ class Category
     public function removeArticle(Article $article): self
     {
         $this->articles->removeElement($article);
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

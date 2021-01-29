@@ -11,8 +11,7 @@
     <table class="mt-2 table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
+            <th>Catégorie</th>
             <th>Description</th>
             <th>Image</th>
             <th>Actions</th>
@@ -20,9 +19,8 @@
         </thead>
         <tbody>
         {% for category in categories %}
-            <tr>
-                <td class="vertCenter">{{ category.id }}</td>
-                <td class="vertCenter">{{ category.name }}</td>
+            <tr {% if category.active is same as false %}class="muted"{% endif %}>
+                <td class="vertCenter">{{ category.name }} {% if category.active is same as false %}(désactivée){% endif %}</td>
                 <td class="vertCenter">{{ category.description }}</td>
                 <td class="vertCenter"><img class="category-mini" src="/images/{{ category.imageName }}"></td>
                 <td class="vertCenter">
